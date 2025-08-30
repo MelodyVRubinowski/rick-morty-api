@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-const Detalle = ({ route }) => {
+const Detalle = ({ route, navigation }) => {
   const personaje = route?.params?.personaje;
 
   if (!personaje) {
