@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const Api = () => {
+  const navigation = useNavigation();
   const [personajes, setPersonajes] = useState([]);
   const [info, setInfo] = useState({});
   const url = "https://rickandmortyapi.com/api/character";
@@ -29,12 +31,14 @@ const Api = () => {
     if (info.next) getPersonajes(info.next);
   };
 
-  const renderItem = ({ item }) => (
+const renderItem = ({ item }) => (
+  <TouchableOpacity onPress={() => navigation.navigate("Detalle", { personaje: item })}>
     <View style={styles.card}>
       <Image source={{ uri: item.image }} style={styles.image} />
       <Text style={styles.name}>{item.name}</Text>
     </View>
-  );
+  </TouchableOpacity>
+);
 
   return ( 
     <View style={styles.container}>
