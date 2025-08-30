@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 const Api = () => {
   const navigation = useNavigation();
+=======
+import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import styles from "./styles";
+import { useNavigation } from '@react-navigation/native';
+
+const Api = ({ navigation }) => {
+>>>>>>> 4b971fe7ba422960f7e90787294e705db4fdbfb3
   const [personajes, setPersonajes] = useState([]);
   const [info, setInfo] = useState({});
   const url = "https://rickandmortyapi.com/api/character";
@@ -31,6 +39,7 @@ const Api = () => {
     if (info.next) getPersonajes(info.next);
   };
 
+<<<<<<< HEAD
 const renderItem = ({ item }) => (
   <TouchableOpacity onPress={() => navigation.navigate("Detalle", { personaje: item })}>
     <View style={styles.card}>
@@ -39,11 +48,20 @@ const renderItem = ({ item }) => (
     </View>
   </TouchableOpacity>
 );
+=======
+  const renderItem = ({ item }) => (
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate("Detalles", { id: item.id })}
+    >
+      <Image source={{ uri: item.image }} style={styles.image} />
+      <Text style={styles.name}>{item.name}</Text>
+    </TouchableOpacity>
+  );
+>>>>>>> 4b971fe7ba422960f7e90787294e705db4fdbfb3
 
   return ( 
     <View style={styles.container}>
-      
-      
       <FlatList
         data={personajes}
         keyExtractor={(item) => item.id.toString()}
@@ -73,6 +91,7 @@ const renderItem = ({ item }) => (
   );
 };
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -119,3 +138,6 @@ const styles = StyleSheet.create({
 });
 
 export default Api;
+=======
+export default Api;
+>>>>>>> 4b971fe7ba422960f7e90787294e705db4fdbfb3
