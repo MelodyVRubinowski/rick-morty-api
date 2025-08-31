@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const Api = () => {
   const [personajes, setPersonajes] = useState([]);
@@ -28,13 +29,17 @@ const Api = () => {
   const onNext = () => {
     if (info.next) getPersonajes(info.next);
   };
+const navigation = useNavigation();
 
-  const renderItem = ({ item }) => (
-    <View style={styles.card}>
-      <Image source={{ uri: item.image }} style={styles.image} />
-      <Text style={styles.name}>{item.name}</Text>
-    </View>
-  );
+const renderItem = ({ item }) => (
+  <TouchableOpacity
+    style={styles.card}
+    onPress={() => navigation.navigate("Detail", { personaje: item })}
+  >
+    <Image source={{ uri: item.image }} style={styles.image} />
+    <Text style={styles.name}>{item.name}</Text>
+  </TouchableOpacity>
+);
 
   return ( 
     <View style={styles.container}>
