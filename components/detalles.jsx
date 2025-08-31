@@ -1,109 +1,49 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 
-const Detalle = ({ route }) => {
-  const { personaje } = route.params;
+const Detalles = () => {
+    const route = useRoute();
+    const { id } = route.params;
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Alive':
-        return '#28a745';
-      case 'Dead':
-        return '#dc3545';
-      default:
-        return '#6c757d';
+    useEffect(() => {
+        fetch(`https://rickandmortyapi.com/api/character/${id}`)
+            .then(res => res.json())
+            .then(json => {
+                setData(json);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, [id]);
+
+    if (loading) {
+        return (
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color="#00bfff" />
+            </View>
+        );
     }
-  };
 
-  return (
-    <ScrollView contentContainerStyle={styles.scrollContent}>
-      <Image source={{ uri: personaje.image }} style={styles.image} />
-      <View style={styles.card}>
-        <Text style={styles.name}>{personaje.name}</Text>
+    if (!data) {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.error}>No se encontró información del personaje.</Text>
+            </View>
+        );
+    }
 
-        <View style={styles.infoRow}>
-          <Text style={styles.label}>Status:</Text>
-          <Text style={[styles.badge, { backgroundColor: getStatusColor(personaje.status) }]}>
-            {personaje.status}
-          </Text>
+    return (
+        <View style={styles.container}>
+            <Image source={{ uri: data.image }} style={styles.image} />
+            <Text style={styles.name}>{data.name}</Text>
+            <Text style={styles.info}>Especie: {data.species}</Text>
+            <Text style={styles.info}>Estado: {data.status}</Text>
+            <Text style={styles.info}>Origen: {data.origin?.name}</Text>
         </View>
-
-        <View style={styles.infoRow}>
-          <Text style={styles.label}>Species:</Text>
-          <Text style={styles.value}>{personaje.species}</Text>
-        </View>
-
-        <View style={styles.infoRow}>
-          <Text style={styles.label}>Gender:</Text>
-          <Text style={styles.value}>{personaje.gender}</Text>
-        </View>
-
-        <View style={styles.infoRow}>
-          <Text style={styles.label}>Origin:</Text>
-          <Text style={styles.value}>{personaje.origin?.name || 'Unknown'}</Text>
-        </View>
-
-        <View style={styles.infoRow}>
-          <Text style={styles.label}>Location:</Text>
-          <Text style={styles.value}>{personaje.location?.name || 'Unknown'}</Text>
-        </View>
-      </View>
-    </ScrollView>
-  );
+    );
 };
-
-const styles = StyleSheet.create({
-  scrollContent: {
-    padding: 20,
-    backgroundColor: '#f5f5f5',
-    alignItems: 'center',
-  },
-  image: {
-    width: 220,
-    height: 220,
-    borderRadius: 12,
-    marginBottom: 20,
-  },
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 20,
-    width: '100%',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-  },
-  name: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    marginVertical: 6,
-    alignItems: 'center',
-  },
-  label: {
-    fontWeight: '600',
-    width: 90,
-    color: '#333',
-  },
-  value: {
-    fontSize: 16,
-    color: '#555',
-    flexShrink: 1,
-  },
-  badge: {
-    color: '#fff',
-    fontWeight: 'bold',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-    overflow: 'hidden',
-  },
-});
-
-export default Detalle;
