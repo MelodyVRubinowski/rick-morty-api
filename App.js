@@ -1,12 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Index from './components/index';     
+import Index from './components';     
 import Detail from './components/detalle';  
-import Api from './components/index';
 
 const Stack = createNativeStackNavigator();
 
-export default function Index() {
+export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Index">
