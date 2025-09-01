@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Index from './components';
-import Detalle from './components';
+import Index from './components/index';
+import Detalle from './components/detalle';
 
 import React from 'react';
 const Stack = createNativeStackNavigator();
