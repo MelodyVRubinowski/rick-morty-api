@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-export default function Detalle({ route }) {
+function Detalle({ route }) {
   const { character } = route.params;
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image source={{ uri: character.image }} style={styles.image} />
@@ -68,3 +67,5 @@ const styles = StyleSheet.create({
     marginTop: 4
   }
 });
+
+export default Detalle;
