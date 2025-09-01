@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Index from './components';     
+import Index from './components/index';     
 import Detail from './components/detalle';  
 
 const Stack = createNativeStackNavigator();
@@ -11,14 +11,12 @@ export default function App() {
       <Stack.Navigator initialRouteName="Index">
         <Stack.Screen
           name="Index"
-          component={Api}
-          options={{ title: 'Personajes' }}
+          component={Index}
         />
         <Stack.Screen
           name="Detail"
           component={Detail}
-          options={{ title: 'Detalle del personaje' }}
-        />
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
