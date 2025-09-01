@@ -118,4 +118,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Api;
+export default Index;
