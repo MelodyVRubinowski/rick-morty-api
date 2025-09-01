@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-function Detalle({ route }) {
+function Detail({ route }) {
   const { character } = route.params;
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Detalle;
+export default Detail;
