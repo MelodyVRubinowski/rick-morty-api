@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
-const Index = ({ navigation }) => {
 
+const Api = ({ navigation }) => {
   const [personajes, setPersonajes] = useState([]);
   const [info, setInfo] = useState({});
   const url = "https://rickandmortyapi.com/api/character";
@@ -30,20 +30,17 @@ const Index = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-  <TouchableOpacity
-    style={styles.card}
-    onPress={() => navigation.navigate('Detail', { character: item })}
-  >
-    <Image source={{ uri: item.image }} style={styles.image} />
-    <Text style={styles.name}>{item.name}</Text>
-  </TouchableOpacity>
-);
-
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('Detail', { character: item })}
+    >
+      <Image source={{ uri: item.image }} style={styles.image} />
+      <Text style={styles.name}>{item.name}</Text>
+    </TouchableOpacity>
+  );
 
   return ( 
     <View style={styles.container}>
-      
-      
       <FlatList
         data={personajes}
         keyExtractor={(item) => item.id.toString()}
@@ -51,7 +48,6 @@ const Index = ({ navigation }) => {
         renderItem={renderItem}
         contentContainerStyle={{ padding: 10 }}
       />
-
       <View style={styles.pagination}>
         <TouchableOpacity
           style={[styles.button, !info.prev && styles.disabled]}
@@ -60,7 +56,6 @@ const Index = ({ navigation }) => {
         >
           <Text style={styles.buttonText}>◀ Prev</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={[styles.button, !info.next && styles.disabled]}
           onPress={onNext}
@@ -118,4 +113,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Index;
+export default Api;

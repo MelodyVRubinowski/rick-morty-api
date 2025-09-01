@@ -1,30 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Index from './components/index';
-import Detalle from './components/detalle';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Index from './components/index';     
+import Detail from './components/detalle';  
+import Api from './components/index';
 
-import React from 'react';
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function Index() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="List">
-        <Stack.Screen name="List" component={Index} />
-        <Stack.Screen name="Detail" component={Detalle} />
+      <Stack.Navigator initialRouteName="Index">
+        <Stack.Screen
+          name="Index"
+          component={Api}
+          options={{ title: 'Personajes' }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={Detail}
+          options={{ title: 'Detalle del personaje' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#312929ff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color : 'white'
-  },
-});
