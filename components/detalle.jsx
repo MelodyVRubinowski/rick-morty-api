@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { agregarFavorito } from './storage';
+import { Button } from 'react-native';
 
 const Detail = ({ route }) => {
   const { character } = route.params;
@@ -12,6 +14,8 @@ const Detail = ({ route }) => {
       <Text style={styles.info}>Species: {character.species}</Text>
       <Text style={styles.info}>Gender: {character.gender}</Text>
       <Text style={styles.info}>Origin: {character.origin.name}</Text>
+    <Button title="Agregar a favoritos" onPress={() => agregarFavorito(character)} />
+      
     </View>
   );
 };

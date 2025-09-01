@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Inicio from './components/inicio';
 import Index from './components/index';     
 import Detail from './components/detalle';  
+import Favoritos from './components/favoritos';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,10 @@ export default function App() {
           name="Detail"
           component={Detail}
           />
+          <Stack.Screen
+  name="Favoritos"
+  component={Favoritos}
+/>
       </Stack.Navigator>
     </NavigationContainer>
   );

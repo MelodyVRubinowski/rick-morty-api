@@ -7,7 +7,14 @@ const Inicio = ({ navigation }) => {
       <Text style={styles.title}>Bienvenida a Rick & Morty App</Text>
       <Text style={styles.subtitle}>Explorá personajes y descubrí sus historias</Text>
       <Button title="Comenzar" onPress={() => navigation.navigate('Index')} />
+     <View>
+      <Button
+        title="Ver favoritos"
+        onPress={() => navigation.navigate('Favoritos')}
+      />
     </View>
+    </View>
+
   );
 };
 
