@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Inicio from './components/inicio';
 import Index from './components/index';     
 import Detail from './components/detalle';  
 
@@ -8,7 +9,11 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Index">
+      <Stack.Navigator initialRouteName="Inicio">
+         <Stack.Screen
+          name="Inicio"
+          component={Inicio}
+        />
         <Stack.Screen
           name="Index"
           component={Index}
