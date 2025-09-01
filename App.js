@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Index from './components';
-import Detalle from './components/detalle';
+import Detalle from './components';
 
 import React from 'react';
 const Stack = createNativeStackNavigator();
