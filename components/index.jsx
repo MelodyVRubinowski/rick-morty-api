@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
-const Api = ({ navigation }) => {
+const Index = ({ navigation }) => {
 
   const [personajes, setPersonajes] = useState([]);
   const [info, setInfo] = useState({});
