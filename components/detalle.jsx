@@ -1,57 +1,70 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-const Detalle = ({ route, navigation }) => {
-  const personaje = route?.params?.personaje;
-
-  if (!personaje) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.error}>No se recibió ningún personaje</Text>
-      </View>
-    );
-  }
+export default function Detalle({ route }) {
+  const { character } = route.params;
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image source={{ uri: personaje.image }} style={styles.image} />
-      <Text style={styles.name}>{personaje.name}</Text>
-      <Text style={styles.info}>🧬 Species: {personaje.species}</Text>
-      <Text style={styles.info}>❤️ Status: {personaje.status}</Text>
-      <Text style={styles.info}>⚧ Gender: {personaje.gender}</Text>
-      <Text style={styles.info}>🌍 Origin: {personaje.origin?.name}</Text>
+      <Image source={{ uri: character.image }} style={styles.image} />
+      <Text style={styles.name}>{character.name}</Text>
+
+      <View style={styles.infoBlock}>
+        <Text style={styles.label}>🧬 Status:</Text>
+        <Text style={styles.value}>{character.status}</Text>
+      </View>
+
+      <View style={styles.infoBlock}>
+        <Text style={styles.label}>🧪 Species:</Text>
+        <Text style={styles.value}>{character.species}</Text>
+      </View>
+
+      <View style={styles.infoBlock}>
+        <Text style={styles.label}>⚧ Gender:</Text>
+        <Text style={styles.value}>{character.gender}</Text>
+      </View>
+
+      <View style={styles.infoBlock}>
+        <Text style={styles.label}>🌍 Origin:</Text>
+        <Text style={styles.value}>{character.origin?.name}</Text>
+      </View>
+
+      <View style={styles.infoBlock}>
+        <Text style={styles.label}>📍 Location:</Text>
+        <Text style={styles.value}>{character.location?.name}</Text>
+      </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     padding: 20,
     alignItems: 'center',
-    backgroundColor: '#312929ff',
-    flexGrow: 1
+    backgroundColor: '#fff'
   },
   image: {
-    width: 200,
-    height: 200,
-    borderRadius: 10,
-    marginBottom: 20
+    width: 240,
+    height: 240,
+    borderRadius: 12,
+    marginBottom: 16
   },
   name: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 10
+    marginBottom: 16,
+    textAlign: 'center'
   },
-  info: {
-    fontSize: 18,
-    color: 'white',
-    marginBottom: 5
+  infoBlock: {
+    width: '100%',
+    marginBottom: 12
   },
-  error: {
-    fontSize: 18,
-    color: 'red'
+  label: {
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  value: {
+    fontSize: 16,
+    marginTop: 4
   }
 });
-
-export default Detalle;
